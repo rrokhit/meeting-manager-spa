@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 
-class Meetings extends Component {
+class Register extends Component {
 
     render() {
         return(
             <div className="text-center mt-4">
-                <h1 className="text-primary">Meetings</h1>
+                <h1 className="text-primary">Register</h1>
             </div>
         );
     }
 }
 
-export default Meetings;
+export default Register;

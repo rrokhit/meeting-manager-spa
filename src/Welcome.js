@@ -11,7 +11,7 @@ class Welcome extends Component {
                     Welcome, {user}
                 </span>,
 
-                <a href="/" className="font-weight-bold text-primary pl-1">Log Out</a>
+                <a href="/login" className="font-weight-bold text-primary pl-1">Log Out</a>
             </div>
         )
     }

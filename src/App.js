@@ -4,6 +4,7 @@ import Welcome from './Welcome';
 import Navigation from './Navigation';
 import Login from './Login';
 import Meetings from './Meetings';
+import Register from'./Register';
 import {Router} from '@reach/router';
 
 class App extends Component {
@@ -24,6 +25,7 @@ constructor() {
       <Router>
       <Home path='/' user={this.state.user}/>
       <Login path='/login'/>
+      <Register path='/register' />
       <Meetings path='/meetings'/>
       </Router>
       </div>
