@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Home from './Home';
 import Welcome from './Welcome';
 import Navigation from './Navigation';
+import Login from './Login';
 import {Router} from '@reach/router';
 
 class App extends Component {
@@ -21,6 +22,7 @@ constructor() {
       <Welcome user={this.state.user}/>}
       <Router>
       <Home path='/' user={this.state.user}/>
+      <Login path='/login' user={this.state.user}/>
       </Router>
       </div>
     ) ;
