@@ -18,6 +18,15 @@ constructor() {
   }
 }
 
+componentDidMount() {
+  const ref = firebase.database().ref('user');
+
+  ref.on('value', snapshot => {
+    let FBUser = snapshot.val();
+    this.setState({user : FBUser});
+  })
+}
+
   render() {
     return(
       <div>
