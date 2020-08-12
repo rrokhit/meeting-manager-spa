@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import FormError from './FormError';
+
 class Register extends Component {
 
     constructor() {
@@ -9,6 +11,7 @@ class Register extends Component {
             email:'',
             passOne: '',
             passTwo: '',
+            errorMessage: null,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -18,7 +21,13 @@ class Register extends Component {
         const itemName = e.target.name;
         const itemValue = e.target.value;
 
-        this.setState({[itemName] : itemValue});
+        this.setState({[itemName] : itemValue}, () => {
+            if (this.state.passOne !== this.state.passTwo) {
+                this.setState({errorMessage : 'Passwords do not match'});
+            } else {
+               this.setState({errorMessage : null}); 
+            }
+        });
     }
 
     render() {
@@ -31,6 +40,9 @@ class Register extends Component {
                     <div className="card-body">
                       <h3 className="font-weight-light mb-3">Register</h3>
                       <div className="form-row">
+                        { this.state.errorMessage !== null ? (
+                            <FormError message={this.state.errorMessage}/>
+                        ) : null }
                         <section className="col-sm-12 form-group">
                           <label
                             className="form-control-label sr-only"
