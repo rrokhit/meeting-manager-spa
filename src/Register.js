@@ -2,6 +2,25 @@ import React, {Component} from 'react';
 
 class Register extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            displayName: '',
+            email:'',
+            passOne: '',
+            passTwo: '',
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+        const itemName = e.target.name;
+        const itemValue = e.target.value;
+
+        this.setState({[itemName] : itemValue});
+    }
+
     render() {
         return(
             <form className="mt-3">
@@ -26,6 +45,8 @@ class Register extends Component {
                             placeholder="Display Name"
                             name="displayName"
                             required
+                            value={this.state.displayName}
+                            onChange={this.handleChange}
                           />
                         </section>
                       </div>
@@ -43,6 +64,8 @@ class Register extends Component {
                           placeholder="Email Address"
                           required
                           name="email"
+                          value={this.state.email}
+                          onChange={this.handleChange}
                         />
                       </section>
                       <div className="form-row">
@@ -52,6 +75,8 @@ class Register extends Component {
                             type="password"
                             name="passOne"
                             placeholder="Password"
+                            value={this.state.passOne}
+                            onChange={this.handleChange}
                           />
                         </section>
                         <section className="col-sm-6 form-group">
@@ -61,6 +86,8 @@ class Register extends Component {
                             required
                             name="passTwo"
                             placeholder="Repeat Password"
+                            value={this.state.passTwo}
+                            onChange={this.handleChange}
                           />
                         </section>
                       </div>
