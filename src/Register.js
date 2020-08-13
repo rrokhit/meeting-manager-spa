@@ -5,8 +5,8 @@ import FormError from './FormError';
 
 class Register extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             displayName: '',
             email:'',
@@ -43,7 +43,10 @@ class Register extends Component {
         firebase.auth().createUserWithEmailAndPassword(
             registrationInfo.email,
             registrationInfo.password,
-        ).catch(error => {
+        ).then(() => {
+            this.props.registerUser(registrationInfo.displayName)
+        })
+        .catch(error => {
             if (error.message !== null ) {
                 this.setState({errorMessage : error.message});
             }else {
