@@ -21,12 +21,17 @@ constructor() {
 }
 
 componentDidMount() {
-  const ref = firebase.database().ref('user');
 
-  ref.on('value', snapshot => {
-    let FBUser = snapshot.val();
-    this.setState({user : FBUser});
-  })
+firebase.auth().onAuthStateChanged(FBUser => {
+  if (FBUser) {
+    this.setState({
+      user: FBUser,
+      displayName: FBUser.displayName,
+      userID: FBUser.uid,
+    })
+  }
+})
+
 }
 
 registerUser = userName => {
@@ -44,12 +49,25 @@ registerUser = userName => {
   })
 }
 
+logoutUser = e => {
+  e.preventDefault();
+  this.setState({
+    displayName: null,
+    userID: null,
+    user: null,
+  })
+
+  firebase.auth().signOut().then(() => {
+    navigate('/login');
+  })
+}
+
   render() {
     return(
       <div>
-        <Navigation user={this.state.user}/>
+        <Navigation user={this.state.user} logoutUser={this.logoutUser}/>
         {this.state.user &&
-      <Welcome user={this.state.displayName}/>}
+      <Welcome userName={this.state.displayName} logoutUser={this.logoutUser}/>}
       <Router>
       <Home path='/' user={this.state.user}/>
       <Login path='/login'/>
