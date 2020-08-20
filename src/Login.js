@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import firebase from 'firebase';
+import FormError from './FormError';
+import { navigate } from '@reach/router';
 
 class Login extends Component {
 
